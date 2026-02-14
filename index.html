@@ -1,0 +1,141 @@
+</body>
+</html>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Happy Birthday, Kim Prachi.🎉</title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<!-- Hacking Font -->
+<link href="https://fonts.googleapis.com/css2?family=Share+Tech+Mono&display=swap" rel="stylesheet">
+
+<style>
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+    font-family:'Share Tech Mono', monospace;
+}
+
+body{
+    height:100vh;
+    background:black;
+    color:#00ff00;
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    overflow:hidden;
+}
+
+/* Matrix background */
+canvas{
+    position:fixed;
+    top:0;
+    left:0;
+    z-index:-1;
+}
+
+/* Main box */
+.container{
+    text-align:center;
+    padding:20px;
+    border:1px solid #00ff00;
+    box-shadow:0 0 20px #00ff00;
+    max-width:90%;
+}
+
+/* Typing text */
+.typing{
+    font-size:22px;
+    white-space:pre-line;
+    min-height:120px;
+}
+
+/* Username */
+.name{
+    font-size:28px;
+    margin-top:15px;
+    text-shadow:0 0 10px #00ff00;
+}
+
+/* Special message */
+.message{
+    margin-top:15px;
+    font-size:16px;
+    color:#7CFF7C;
+}
+
+/* Footer */
+.footer{
+    margin-top:20px;
+    font-size:12px;
+    opacity:0.7;
+}
+</style>
+</head>
+
+<body>
+
+<canvas id="matrix"></canvas>
+
+<div class="container">
+    <div class="typing" id="typing"></div>
+    <div class="name">— Message —</div>
+    <div class="message">
+        "On this day, let everything start anew. Keep the happy memories close and let the sorrows go far away. Leave behind the old and worn-out past, and work with fresh energy on this new day."
+    </div>
+    <div class="footer">⚡ Power by Hasibur 🗿☠️</div>
+</div>
+
+<script>
+/* Typing animation */
+const text = "Initializing birthday protocol...\nAccess Granted! 🖤\n\nHappy Birthday,\nKim Prachi.🎉";
+let index = 0;
+const speed = 80;
+function typeEffect(){
+    if(index < text.length){
+        document.getElementById("typing").innerHTML += text.charAt(index);
+        index++;
+        setTimeout(typeEffect, speed);
+    }
+}
+typeEffect();
+
+/* Matrix background */
+const canvas = document.getElementById("matrix");
+const ctx = canvas.getContext("2d");
+
+canvas.width = window.innerWidth;
+canvas.height = window.innerHeight;
+
+const letters = "04PRACHI";
+const fontSize = 16;
+const columns = canvas.width / fontSize;
+const drops = [];
+
+for(let x = 0; x < columns; x++)
+    drops[x] = 1;
+
+function drawMatrix(){
+    ctx.fillStyle = "rgba(0, 0, 0, 0.05)";
+    ctx.fillRect(0, 0, canvas.width, canvas.height);
+
+    ctx.fillStyle = "#00ff00";
+    ctx.font = fontSize + "px monospace";
+
+    for(let i = 0; i < drops.length; i++){
+        const text = letters.charAt(Math.floor(Math.random() * letters.length));
+        ctx.fillText(text, i * fontSize, drops[i] * fontSize);
+
+        if(drops[i] * fontSize > canvas.height && Math.random() > 0.975)
+            drops[i] = 0;
+
+        drops[i]++;
+    }
+}
+setInterval(drawMatrix, 33);
+</script>
+
+</body>
+</html>
